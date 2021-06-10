@@ -4,14 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:dev": "nodemon",
+    "start": "ts-node-dev src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ratovoson81/test-react.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "bugs": {
+    "url": "https://github.com/ratovoson81/test-react/issues"
+  },
+  "homepage": "https://github.com/ratovoson81/test-react#readme",
+  "dependencies": {
+    "@types/express": "^4.17.12",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^15.12.2",
-    "prisma": "^2.24.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.13",
+    "nodemon": "^2.0.7",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   }
