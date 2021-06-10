@@ -1,9 +1,9 @@
-/*import express from "express";
-import userCtrl from "../controllers/user";
+import express, { Router } from "express";
+import { login, register } from "../controllers/User";
 
-const router = express.Router();
+const router: Router = express.Router();
 
-router.post("/signup", userCtrl.signup);
-router.post("/login", userCtrl.login);
+router.post("/regiser", register);
+router.post("/login", login);
 
-module.exports = router;*/
+export { router as routerUser };

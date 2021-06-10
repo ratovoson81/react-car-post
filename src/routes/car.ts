@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import {
   createCar,
   deleteCar,
@@ -7,7 +7,7 @@ import {
   modifyCar,
 } from "../controllers/Car";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.post("/", createCar);
 router.put("/:id", modifyCar);

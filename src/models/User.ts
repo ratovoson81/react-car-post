@@ -2,15 +2,15 @@ import mongoose, { Document } from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 
 interface IUser extends Document {
-  email: String;
-  password: String;
+  name: string;
+  password: string;
 }
 
-const userSchema = new mongoose.Schema<IUser>({
-  email: { type: String, required: true, unique: true },
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
 
 userSchema.plugin(uniqueValidator);
 
-export const User = mongoose.model<IUser>("IUser", userSchema);
+export const User = mongoose.model<IUser>("User", userSchema);
