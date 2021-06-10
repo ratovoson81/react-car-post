@@ -17,7 +17,7 @@ mongoose
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch((error) => console.log(error));
 
-app.use(routerCar);
+app.use("/car", routerCar);
 
 server.listen(3000, () => {
   console.log("serveur start on port 3000");
