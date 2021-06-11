@@ -1,18 +1,20 @@
 import express, { Router } from "express";
 import {
-  createCar,
+  comment,
+  create,
   deleteCar,
-  getAllCar,
-  getOneCar,
-  modifyCar,
+  getAll,
+  getOne,
+  modify,
 } from "../controllers/Car";
 
 const router: Router = express.Router();
 
-router.post("/", createCar);
-router.put("/:id", modifyCar);
+router.post("/", create);
+router.put("/:id", modify);
 router.delete("/:id", deleteCar);
-router.get("/:id", getOneCar);
-router.get("/", getAllCar);
+router.get("/:id", getOne);
+router.get("/", getAll);
+router.put("/comment/:id", comment);
 
 export { router as routerCar };
