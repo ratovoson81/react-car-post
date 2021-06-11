@@ -7,28 +7,38 @@ import ProvideAuth from "../router/ProvideAuth";
 import LoginPage from "../layout/LoginPage";
 import PrivatePage from "../layout/PrivatePage";
 import Home from "../components/Home";
+import ListCar from "../components/car/ListCar";
 
 export default function App() {
   return (
     <ProvideAuth>
-      <Router>
-        <div>
-          <Switch>
-            <AppRoute exact path="/" layout={LoginPage} component={Login} />
-            <AppRoute
-              path="/register"
-              layout={LoginPage}
-              component={Register}
-            />
-            <PrivateRoute
-              path="/accueil"
-              layout={PrivatePage}
-              component={Acceuil}
-            />
-            <PrivateRoute path="/home" layout={PrivatePage} component={Home} />
-          </Switch>
+      <div className="flex flex-row">
+        <div className=" w-3/5">
+          <ListCar />
         </div>
-      </Router>
+        <div className="w-2/5 ">
+          <Router>
+            <Switch>
+              <AppRoute exact path="/" layout={LoginPage} component={Login} />
+              <AppRoute
+                path="/register"
+                layout={LoginPage}
+                component={Register}
+              />
+              <PrivateRoute
+                path="/accueil"
+                layout={PrivatePage}
+                component={Acceuil}
+              />
+              <PrivateRoute
+                path="/home"
+                layout={PrivatePage}
+                component={Home}
+              />
+            </Switch>
+          </Router>
+        </div>
+      </div>
     </ProvideAuth>
   );
 }

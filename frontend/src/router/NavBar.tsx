@@ -13,7 +13,7 @@ const active = classNames(item, "bg-gray-100", "rounded-lg");
 
 export default function NavBar() {
   return (
-    <ul className="flex justify-end">
+    <ul className="flex justify-center">
       <li className={active}>
         <Link to="/">Login</Link>
       </li>

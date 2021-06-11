@@ -7,7 +7,7 @@ export function AuthButton() {
   let auth = useAuth() as authType;
 
   return auth.user ? (
-    <p>
+    <p className="flex justify-center">
       Welcome! <span>🔥</span>
       <button
         onClick={() => {
@@ -18,6 +18,6 @@ export function AuthButton() {
       </button>
     </p>
   ) : (
-    <p>You are not logged in.</p>
+    <p className="flex justify-center">You are not logged in.</p>
   );
 }

@@ -8,7 +8,7 @@ type props = {
 
 const LoginPage: React.FC<props> = ({ children }) => {
   return (
-    <div className="md:container md:mx-auto flex flex-col justify-center">
+    <div className="flex flex-col justify-center border">
       <AuthButton />
       <NavBar />
       <br />
