@@ -1,5 +1,5 @@
 const ListCar = () => {
-  return <div className="">List car</div>;
+  return <div className="border">List car</div>;
 };
 
 export default ListCar;

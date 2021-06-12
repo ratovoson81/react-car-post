@@ -14,7 +14,9 @@ export const register = (req: Request, res: Response) => {
       user
         .save()
         .then((value) => res.status(201).json(value))
-        .catch((error) => res.status(400).json({ error }));
+        .catch((error) => {
+          res.json({ error });
+        });
     })
     .catch((error) => res.status(500).json({ error }));
 };

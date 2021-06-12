@@ -13,7 +13,7 @@ export default function App() {
   return (
     <ProvideAuth>
       <div className="flex flex-row">
-        <div className=" w-3/5">
+        <div className=" w-3/5 border">
           <ListCar />
         </div>
         <div className="w-2/5 ">

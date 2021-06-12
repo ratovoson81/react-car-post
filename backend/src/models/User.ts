@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator, {
+  message: "ce nom existe déjà",
+});
 
 export const User = mongoose.model<IUser>("User", userSchema);
