@@ -4,16 +4,20 @@ interface ICar extends Document {
   title: String;
   description: String;
   imageUrl: String;
-  userId: String;
+  user: String;
+  date: String;
   comments: any;
 }
 
 const carSchema = new mongoose.Schema<ICar>({
-  _id: Schema.Types.ObjectId,
   title: { type: String, required: true },
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
-  userId: { type: String, required: true },
+  date: { type: String, required: true },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

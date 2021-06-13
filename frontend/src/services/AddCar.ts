@@ -1,12 +1,16 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { createCar } from "../api";
 import { CarType } from "../api/types";
+import { useAppSelector } from "../hooks";
 
 export const useAddCar = () => {
+  const user = useAppSelector((state) => state.user.user);
+
   const [form, setForm] = useState<CarType>({
     title: "",
     description: "",
     file: null,
+    user: user.userId,
   });
 
   const handleChange = (

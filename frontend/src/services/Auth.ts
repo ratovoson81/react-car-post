@@ -2,6 +2,8 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { isLogged, login } from "../api";
 import { UserType } from "../api/types";
 import { TOKEN } from "../constants/config";
+import { useAppDispatch } from "../hooks";
+import { getUser } from "../store/User";
 
 const fakeAuth = {
   isAuthenticated: false,
@@ -16,6 +18,8 @@ const fakeAuth = {
 };
 
 export function useProvideAuth() {
+  const dispatch = useAppDispatch();
+
   const [user, setUser] = useState<String | null>(null);
   const [form, setForm] = useState<UserType>({
     name: "",
@@ -25,6 +29,7 @@ export function useProvideAuth() {
   useEffect(() => {
     async function fetch() {
       const response = await isLogged(localStorage.getItem(TOKEN));
+      dispatch(getUser(response));
       setUser(response);
     }
     fetch();

@@ -3,15 +3,17 @@ import { Car } from "../models/Car";
 import { Comment } from "../models/Comment";
 
 export const create = (req: Request, res: Response) => {
-  console.log(req.body);
   const carObject = JSON.parse(req.body.car);
+  delete carObject.file;
   delete carObject._id;
   const car = new Car({
     ...carObject,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
+    date: new Date(),
   });
+  console.log(car);
   car
     .save()
     .then((car) => res.status(201).json(car))
