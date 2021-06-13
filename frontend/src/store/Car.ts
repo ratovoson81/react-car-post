@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from ".";
+import { ItemCarType } from "../api/types";
+import produce from "immer";
 
-// Define a type for the slice state
 interface CarState {
-  cars: [];
+  cars: ItemCarType[];
 }
 
 // Define the initial state using that type
 const initialState: CarState = {
-  cars: [],
+  cars: [] as any,
 };
 
 export const carSlice = createSlice({
@@ -19,8 +20,8 @@ export const carSlice = createSlice({
     setAllCar: (state, action: PayloadAction<any>) => {
       state.cars = action.payload;
     },
-    decrement: (state, action: PayloadAction<CarState>) => {
-      //state.car -= 1;
+    addCar: (state, action: PayloadAction<ItemCarType>) => {
+      state.cars.push(action.payload);
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<CarState>) => {
@@ -29,7 +30,7 @@ export const carSlice = createSlice({
   },
 });
 
-export const { setAllCar, decrement, incrementByAmount } = carSlice.actions;
+export const { setAllCar, addCar, incrementByAmount } = carSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCar = (state: RootState) => state.car.cars;

@@ -1,10 +1,12 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { createCar } from "../api";
 import { CarType } from "../api/types";
-import { useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { addCar } from "../store/Car";
 
 export const useAddCar = () => {
   const user = useAppSelector((state) => state.user.user);
+  const dispatch = useAppDispatch();
 
   const [form, setForm] = useState<CarType>({
     title: "",
@@ -33,7 +35,7 @@ export const useAddCar = () => {
   const submit = async (event: SyntheticEvent) => {
     event.preventDefault();
     const value = await createCar(form);
-    console.log(value);
+    dispatch(addCar(value));
   };
 
   return {
