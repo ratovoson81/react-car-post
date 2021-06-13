@@ -1,4 +1,4 @@
-import { json } from "body-parser";
+import bodyParser from "body-parser";
 import express from "express";
 import { routerCar } from "./routes/car";
 import mongoose from "mongoose";
@@ -7,7 +7,7 @@ import { routerUser } from "./routes/User";
 import path from "path";
 
 const app = express();
-app.use(json());
+app.use(bodyParser.json());
 
 const server = http.createServer(app);
 

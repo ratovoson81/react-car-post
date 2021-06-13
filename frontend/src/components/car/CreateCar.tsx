@@ -2,10 +2,13 @@ import add from "../../assets/add.svg";
 import Modal from "react-modal";
 import { useState } from "react";
 import "../../css/style.css";
+import { useAddCar } from "../../services/AddCar";
 
 Modal.setAppElement("#root");
 
 const CreateCar = () => {
+  const { form, handleChange, handleChangeFile, submit } = useAddCar();
+
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);
@@ -46,8 +49,13 @@ const CreateCar = () => {
                         Titre
                       </label>
                       <input
+                        required
                         placeholder="Titre"
                         className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-12 px-4"
+                        type="text"
+                        name="title"
+                        onChange={handleChange}
+                        value={form.title}
                       />
                     </div>
                   </div>
@@ -57,10 +65,11 @@ const CreateCar = () => {
                     </label>
                     <textarea
                       required
-                      name="message"
-                      id=""
                       className="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
                       placeholder="Description"
+                      name="description"
+                      onChange={handleChange}
+                      value={form.description}
                     ></textarea>
                   </div>
                   <div className="md:flex flex-row md:space-x-4 w-full ">
@@ -69,9 +78,11 @@ const CreateCar = () => {
                         Image
                       </label>
                       <input
+                        required
                         type="file"
                         placeholder="Image"
                         className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-12 px-4"
+                        onChange={handleChangeFile}
                       />
                     </div>
                   </div>
@@ -83,15 +94,16 @@ const CreateCar = () => {
             <button
               type="button"
               className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+              onClick={submit}
             >
-              Deactivate
+              Ajouter
             </button>
             <button
               onClick={closeModal}
               type="button"
               className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
             >
-              Cancel
+              Annuler
             </button>
           </div>
         </Modal>

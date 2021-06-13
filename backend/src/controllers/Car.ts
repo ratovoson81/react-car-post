@@ -3,9 +3,14 @@ import { Car } from "../models/Car";
 import { Comment } from "../models/Comment";
 
 export const create = (req: Request, res: Response) => {
-  delete req.body._id;
+  console.log(req.body);
+  const carObject = JSON.parse(req.body.car);
+  delete carObject._id;
   const car = new Car({
-    ...req.body,
+    ...carObject,
+    imageUrl: `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`,
   });
   car
     .save()

@@ -1,9 +1,11 @@
 import axios from "axios";
 import { TOKEN, URL_API } from "../constants/config";
-import { UserType } from "./types";
+import { CarType, UserType } from "./types";
 
 const token = localStorage.getItem(TOKEN);
 axios.defaults.headers.common = { Authorization: token ? `${token}` : "" };
+
+const config = { headers: { "Content-Type": "multipart/form-data" } };
 
 export async function register(form: UserType) {
   return await axios
@@ -29,6 +31,17 @@ export async function isLogged(token: string | null) {
 export async function getAllCar() {
   return await axios
     .get(`${URL_API}/car`)
+    .then((res) => res.data)
+    .catch((error) => error);
+}
+
+export async function createCar(form: CarType) {
+  let data = new FormData() as any;
+  data.append("car", JSON.stringify(form));
+  data.append("image", form.file, form.title);
+  console.log(data);
+  return await axios
+    .post(`${URL_API}/car`, data, config)
     .then((res) => res.data)
     .catch((error) => error);
 }
