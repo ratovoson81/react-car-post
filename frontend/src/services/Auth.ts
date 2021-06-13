@@ -29,7 +29,7 @@ export function useProvideAuth() {
     }
     fetch();
   }, []);
-  console.log(user);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setForm({
