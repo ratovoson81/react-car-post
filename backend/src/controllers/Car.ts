@@ -13,7 +13,6 @@ export const create = (req: Request, res: Response) => {
     }`,
     date: new Date(),
   });
-  console.log(car);
   car
     .save()
     .then((car) => res.status(201).json(car))
@@ -44,7 +43,10 @@ export const getOne = (req: Request, res: Response) => {
 export const getAll = (req: Request, res: Response) => {
   Car.find()
     .populate("comments")
-    .then((cars) => res.status(200).json(cars))
+    .populate("user")
+    .then((cars) => {
+      res.status(200).json(cars);
+    })
     .catch((error) => res.status(400).json({ error }));
 };
 
@@ -58,7 +60,6 @@ export const comment = (req: Request, res: Response) => {
   comment
     .save()
     .then(async (result) => {
-      console.log(result);
       let car = await Car.findOne({ _id: req.params.id });
       car?.comments.push(result);
       car?.save();

@@ -14,7 +14,4 @@ export const useCars = () => {
     asyncFunc();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const cars = getAllCar();
-  return { cars };
 };

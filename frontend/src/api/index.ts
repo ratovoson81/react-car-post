@@ -39,7 +39,6 @@ export async function createCar(form: CarType) {
   let data = new FormData() as any;
   data.append("car", JSON.stringify(form));
   data.append("image", form.file, form.title);
-  console.log(data);
   return await axios
     .post(`${URL_API}/car`, data, config)
     .then((res) => res.data)

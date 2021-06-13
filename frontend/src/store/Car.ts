@@ -19,7 +19,7 @@ export const carSlice = createSlice({
     setAllCar: (state, action: PayloadAction<any>) => {
       state.cars = action.payload;
     },
-    decrement: (state) => {
+    decrement: (state, action: PayloadAction<CarState>) => {
       //state.car -= 1;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`

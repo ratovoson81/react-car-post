@@ -9,3 +9,14 @@ export type CarType = {
   file: File | null;
   user: string;
 };
+
+export type ItemCarType = CarType & {
+  _id: string;
+  imageUrl: string;
+  date: string;
+  comments: [];
+  user: {
+    _id: string;
+    name: string;
+  };
+};
