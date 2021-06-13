@@ -25,3 +25,10 @@ export async function isLogged(token: string | null) {
     .then((res) => res.data)
     .catch((error) => error);
 }
+
+export async function getAllCar() {
+  return await axios
+    .get(`${URL_API}/car`)
+    .then((res) => res.data)
+    .catch((error) => error);
+}

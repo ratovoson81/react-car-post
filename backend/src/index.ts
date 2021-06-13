@@ -4,6 +4,7 @@ import { routerCar } from "./routes/car";
 import mongoose from "mongoose";
 import http from "http";
 import { routerUser } from "./routes/User";
+import path from "path";
 
 const app = express();
 app.use(json());
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/car", routerCar);
 app.use("/user", routerUser);
 
