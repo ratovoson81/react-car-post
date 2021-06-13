@@ -6,9 +6,12 @@ interface IComment extends Document {
   date: String;
 }
 const commentSchema = new mongoose.Schema<IComment>({
-  author: { type: String, required: true },
   content: { type: String, required: true },
   date: { type: String, required: true },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   car: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Car",

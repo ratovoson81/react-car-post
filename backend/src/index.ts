@@ -5,10 +5,11 @@ import mongoose from "mongoose";
 import http from "http";
 import { routerUser } from "./routes/User";
 import path from "path";
+var cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(cors());
 const server = http.createServer(app);
 
 mongoose

@@ -53,9 +53,9 @@ export const getAll = (req: Request, res: Response) => {
 export const comment = (req: Request, res: Response) => {
   const comment = new Comment({
     car: req.params.id,
-    author: req.body.author,
+    user: req.body.user,
     content: req.body.content,
-    date: req.body.date,
+    date: new Date(),
   });
   comment
     .save()

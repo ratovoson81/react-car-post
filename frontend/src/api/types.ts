@@ -20,3 +20,8 @@ export type ItemCarType = CarType & {
     name: string;
   };
 };
+
+export type CommentType = {
+  content: string;
+  user: string;
+};

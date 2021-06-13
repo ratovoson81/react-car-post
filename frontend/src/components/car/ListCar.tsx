@@ -2,10 +2,13 @@ import { ItemCarType } from "../../api/types";
 import { useAppSelector } from "../../hooks";
 import { useCars } from "../../services/Car";
 import moment from "moment";
+import { useComment } from "../../services/Comment";
+import { SyntheticEvent } from "react";
 
 const ListCar = () => {
   useCars();
   const cars = useAppSelector((state) => state.car.cars);
+  const { form, handleChange, submit } = useComment();
 
   return (
     <>
@@ -33,7 +36,16 @@ const ListCar = () => {
                 type="text"
                 className="focus:outline-none bg-gray-100 w-full"
                 placeholder="Votre commentaire"
+                name="content"
+                onChange={handleChange}
+                value={form.content}
               />
+              <button
+                className=""
+                onClick={(e: SyntheticEvent) => submit(e, item._id)}
+              >
+                Envoyer
+              </button>
             </div>
           </div>
         </div>
