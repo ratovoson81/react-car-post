@@ -7,14 +7,14 @@ import ProvideAuth from "../router/ProvideAuth";
 import LoginPage from "../layout/LoginPage";
 import PrivatePage from "../layout/PrivatePage";
 import Home from "../components/Home";
-import ListCar from "../components/car/ListCar";
+import Car from "../components/car/Car";
 
 export default function App() {
   return (
     <ProvideAuth>
       <div className="flex flex-row">
         <div className=" w-3/5 ">
-          <ListCar />
+          <Car />
         </div>
         <div className="w-2/5 ">
           <Router>

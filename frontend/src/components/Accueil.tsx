@@ -1,3 +1,5 @@
+import CreateCar from "./car/CreateCar";
+
 export default function Acceuil() {
-  return <p>Accueil</p>;
+  return <CreateCar />;
 }
