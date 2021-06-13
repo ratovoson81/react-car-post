@@ -2,6 +2,7 @@ import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { comment } from "../api";
 import { CommentType } from "../api/types";
 import { useAppDispatch, useAppSelector } from "../hooks";
+import { commentCar } from "../store/Car";
 
 export const useComment = () => {
   const user = useAppSelector((state) => state.user.user);
@@ -26,7 +27,7 @@ export const useComment = () => {
   const submit = async (event: SyntheticEvent, id: string) => {
     event.preventDefault();
     const value = await comment(form, id);
-    //dispatch(addCar(value));
+    dispatch(commentCar(value));
     console.log(value);
   };
 

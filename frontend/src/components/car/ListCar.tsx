@@ -28,8 +28,18 @@ const ListCar = () => {
             <div className="flex items-center justify-start mx-8 text-sm text-gray-500">
               <p>{moment(new Date(item.date), "YYYYMMDD").fromNow()}</p>
             </div>
-            <div className="my-2 flex items-center justify-start mx-8 text-sm text-gray-500">
-              <p>comments</p>
+            <div className="my-2 flex flex-col mx-8 text-sm text-gray-500">
+              {item.comments.map((com) => (
+                <span key={com._id} className="flex">
+                  <p className="text-black font-semibold">{com.user.name}</p>
+                  <span className="flex flex-col">
+                    <p className="text-gray-500 ml-2">{com.content}</p>
+                    <span className="text-gray-500 ml-2">
+                      {moment(new Date(com.date), "YYYYMMDD").fromNow()}
+                    </span>
+                  </span>
+                </span>
+              ))}
             </div>
             <div className="my-2 flex items-center justify-start mx-8">
               <input

@@ -42,7 +42,12 @@ export const getOne = (req: Request, res: Response) => {
 
 export const getAll = (req: Request, res: Response) => {
   Car.find()
-    .populate("comments")
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+      },
+    })
     .populate("user")
     .then((cars) => {
       res.status(200).json(cars);
@@ -62,8 +67,18 @@ export const comment = (req: Request, res: Response) => {
     .then(async (result) => {
       let car = await Car.findOne({ _id: req.params.id });
       car?.comments.push(result);
-      car?.save();
-      res.status(201).json(result);
+      car?.save().then((t) =>
+        t
+          .populate({
+            path: "comments",
+            populate: {
+              path: "user",
+            },
+          })
+          .populate("user")
+          .execPopulate()
+          .then((car) => res.status(201).json(car))
+      );
     })
     .catch((error: Error) => res.status(400).json({ error }));
 };

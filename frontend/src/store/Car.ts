@@ -23,13 +23,17 @@ export const carSlice = createSlice({
       state.cars.push(action.payload);
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<CarState>) => {
-      //state.car += action.payload;
+    commentCar: (state, action: PayloadAction<ItemCarType>) => {
+      console.log(action.payload);
+      const index = state.cars.findIndex(
+        (obj) => obj._id === action.payload._id
+      );
+      state.cars[index] = action.payload;
     },
   },
 });
 
-export const { setAllCar, addCar, incrementByAmount } = carSlice.actions;
+export const { setAllCar, addCar, commentCar } = carSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCar = (state: RootState) => state.car.cars;

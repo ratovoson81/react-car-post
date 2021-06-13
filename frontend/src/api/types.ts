@@ -14,7 +14,17 @@ export type ItemCarType = CarType & {
   _id: string;
   imageUrl: string;
   date: string;
-  comments: [];
+  comments: [comType];
+  user: {
+    _id: string;
+    name: string;
+  };
+};
+
+export type comType = {
+  _id: string;
+  date: string;
+  content: string;
   user: {
     _id: string;
     name: string;
