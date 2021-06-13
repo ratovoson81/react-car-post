@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from ".";
 import { ItemCarType } from "../api/types";
-import produce from "immer";
 
 interface CarState {
   cars: ItemCarType[];

@@ -4,6 +4,7 @@ import App from "./pages/App";
 import "./css/tailwind.css";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import "moment/locale/fr";
 
 ReactDOM.render(
   <React.StrictMode>
