@@ -3,6 +3,14 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { User } from "../models/User";
 
+declare module "jsonwebtoken" {
+  export function verify(
+    token: string,
+    secretOrPublicKey: string | Buffer,
+    options?: VerifyOptions
+  ): { userId: string };
+}
+
 export const register = (req: Request, res: Response) => {
   bcrypt
     .hash(req.body.password, 10)
@@ -34,6 +42,7 @@ export const login = (req: Request, res: Response) => {
             return res.status(401).json({ error: "Mot de passe incorrect !" });
           }
           res.status(200).json({
+            name: user.name,
             userId: user._id,
             token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
               expiresIn: "24h",
@@ -43,4 +52,22 @@ export const login = (req: Request, res: Response) => {
         .catch((error) => res.status(500).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
+};
+
+export const isLogged = (req: any, res: Response) => {
+  const token = req.headers.authorization;
+  jwt.verify(token, "RANDOM_TOKEN_SECRET", function (err: any, decoded: any) {
+    if (err) {
+      return res.json(null);
+    } else {
+      User.findOne({ _id: decoded.userId })
+        .then((user) =>
+          res.status(200).json({
+            userId: user?.id,
+            name: user?.name,
+          })
+        )
+        .catch((error) => res.status(404).json({ error }));
+    }
+  });
 };
