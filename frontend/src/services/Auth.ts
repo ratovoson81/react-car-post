@@ -29,6 +29,7 @@ export function useProvideAuth() {
   useEffect(() => {
     async function fetch() {
       const response = await isLogged(localStorage.getItem(TOKEN));
+      console.log(response);
       dispatch(getUser(response));
       setUser(response);
     }

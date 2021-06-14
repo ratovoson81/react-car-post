@@ -4,12 +4,14 @@ import { useCars } from "../../services/Car";
 import moment from "moment";
 import { useComment } from "../../services/Comment";
 import { SyntheticEvent } from "react";
+import { useAuth } from "../../context/Auth";
+import { authType } from "../../CostumType";
 
 const ListCar = () => {
   useCars();
   const cars = useAppSelector((state) => state.car.cars);
   const { form, handleChange, submit } = useComment();
-  const user = useAppSelector((state) => state.user.user);
+  let auth = useAuth() as authType;
 
   return (
     <>
@@ -30,7 +32,7 @@ const ListCar = () => {
               <p>{moment(new Date(item.date), "YYYYMMDD").fromNow()}</p>
             </div>
             <div className="my-2 flex flex-col mx-8 text-sm text-gray-500">
-              {user ? (
+              {auth.user ? (
                 item.comments.map((com) => (
                   <span key={com._id} className="flex mt-1">
                     <p className="text-black font-semibold">{com.user.name}</p>
@@ -46,7 +48,7 @@ const ListCar = () => {
                 <p>Connecter vous pour commenter !</p>
               )}
             </div>
-            {user && (
+            {auth.user && (
               <div className="my-2 flex items-center justify-start mx-8">
                 <input
                   type="text"

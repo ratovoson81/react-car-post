@@ -12,10 +12,10 @@ export default function Register() {
       >
         <p className="text-lg">Créer votre compte!</p>
         <div className="mb-3 space-y-2 md:flex flex-col w-2/3  ">
-          <label className="font-semibold text-gray-600 py-2">nom</label>
+          <label className="font-semibold text-gray-600 py-2">Nom</label>
           <input
             required
-            placeholder="nom"
+            placeholder="Nom"
             className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-12 px-4"
             name="name"
             onChange={handleChange}
