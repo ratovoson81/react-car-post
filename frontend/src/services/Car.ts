@@ -9,7 +9,7 @@ export const useCars = () => {
   useEffect(() => {
     const asyncFunc = async () => {
       const result = await getAllCar();
-      dispatch(setAllCar(result));
+      dispatch(setAllCar(result.reverse()));
     };
     asyncFunc();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -18,7 +18,7 @@ export const carSlice = createSlice({
       state.cars = action.payload;
     },
     addCar: (state, action: PayloadAction<ItemCarType>) => {
-      state.cars.push(action.payload);
+      state.cars.unshift(action.payload);
     },
     commentCar: (state, action: PayloadAction<ItemCarType>) => {
       const index = state.cars.findIndex(

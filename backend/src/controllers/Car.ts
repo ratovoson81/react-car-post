@@ -15,7 +15,12 @@ export const create = (req: Request, res: Response) => {
   });
   car
     .save()
-    .then((car) => res.status(201).json(car))
+    .then((t) =>
+      t
+        .populate("user")
+        .execPopulate()
+        .then((car) => res.status(201).json(car))
+    )
     .catch((error: Error) => res.status(400).json({ error }));
 };
 

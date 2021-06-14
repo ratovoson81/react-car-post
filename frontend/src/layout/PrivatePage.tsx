@@ -1,17 +1,11 @@
 import React from "react";
-import { AuthButton } from "../components/AuthButton";
 
 type props = {
   children: React.ReactNode;
 };
 
 const PrivatePage: React.FC<props> = ({ children }) => {
-  return (
-    <>
-      {children}
-      <AuthButton />
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default PrivatePage;

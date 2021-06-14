@@ -26,6 +26,6 @@ export function AuthButton() {
       </button>
     </p>
   ) : (
-    <p className="flex justify-center">You are not logged in.</p>
+    <p className="flex justify-center mt-1">Vous n'êtes pas authentifié</p>
   );
 }
