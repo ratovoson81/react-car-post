@@ -40,13 +40,16 @@ const ListCar = () => {
             <div className="my-2 flex flex-col mx-8 text-sm text-gray-500">
               {auth.user ? (
                 item.comments.map((com) => (
-                  <span key={com._id} className="flex my-1">
+                  <span
+                    key={com._id}
+                    className="flex my-1 border rounded-lg bg-gray-200 p-1 px-2"
+                  >
                     <p className="text-black font-semibold">{com.user.name}</p>
                     <span className="flex flex-col">
                       <p className="text-gray-500 ml-2">{com.content}</p>
-                      {/*<span className="text-gray-500 ml-2">
-                      {moment(new Date(com.date), "YYYYMMDD").fromNow()}
-                    </span>*/}
+                      <span className="text-gray-500 ml-2 text-sm">
+                        {moment(new Date(com.date), "YYYYMMDD").fromNow()}
+                      </span>
                     </span>
                   </span>
                 ))
