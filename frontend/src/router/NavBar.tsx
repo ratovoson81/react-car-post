@@ -13,19 +13,10 @@ const active = classNames(item, "bg-gray-100", "rounded-lg");
 
 export default function NavBar() {
   return (
-    <ul className="flex justify-center">
-      <li className={active}>
-        <Link to="/">Login</Link>
-      </li>
-      <li className={item}>
-        <Link to="/register">Register</Link>
-      </li>
-      <li className={item}>
-        <Link to="/accueil">Acceuil</Link>
-      </li>
-      <li className={item}>
-        <Link to="/home">Home</Link>
-      </li>
-    </ul>
+    <>
+      <ul className="flex justify-center">
+        <Link to="/register">créer un compte</Link>
+      </ul>
+    </>
   );
 }

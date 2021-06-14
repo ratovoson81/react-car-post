@@ -15,10 +15,7 @@ export async function register(form: UserType) {
 }
 
 export async function login(form: UserType) {
-  return await axios
-    .post(`${URL_API}/user/login`, form)
-    .then((res) => res.data)
-    .catch((error) => error);
+  return await axios.post(`${URL_API}/user/login`, form);
 }
 
 export async function isLogged(token: string | null) {

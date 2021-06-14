@@ -15,7 +15,7 @@ const ListCar = () => {
     <>
       {cars.map((item: ItemCarType) => (
         <div key={item._id} className="flex justify-center ">
-          <div className="flex flex-col justify-center w-2/3 m-8 border border-gray-100 bg-gray-100 rounded-lg">
+          <div className="flex flex-col justify-center w-2/3 mt-8 border border-gray-100 bg-gray-100 rounded-lg">
             <div className="h-14 flex items-center justify-start ml-8">
               <p className="text-lg">{item.title}</p>
             </div>

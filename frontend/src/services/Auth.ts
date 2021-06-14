@@ -51,11 +51,12 @@ export function useProvideAuth() {
     });
   };
 
-  const connect = async () => {
-    const value = await login(form);
-    dispatch(getUser({ userId: value.userId, name: value.name }));
-    localStorage.setItem(TOKEN, value.token);
-  };
+  async function connect() {
+    const response = await login(form).then((data) => {
+      return data;
+    });
+    return response.data;
+  }
 
   const signout = (cb: () => void) => {
     return fakeAuth.signout(() => {

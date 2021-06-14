@@ -3,11 +3,13 @@ import Modal from "react-modal";
 import { useState } from "react";
 import "../../css/style.css";
 import { useAddCar } from "../../services/AddCar";
+import { useAppSelector } from "../../hooks";
 
 Modal.setAppElement("#root");
 
 const CreateCar = () => {
   const { form, handleChange, handleChangeFile, submit } = useAddCar();
+  const user = useAppSelector((state) => state.user.user);
 
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
@@ -21,13 +23,19 @@ const CreateCar = () => {
   return (
     <>
       <div className="flex justify-center mt-8">
+        <p className="text-lg">Hello {user?.name} !</p>
         <div className="flex flex-row justify-start m-2 border border-gray-100 bg-gray-100 rounded-lg">
           <img src={add} alt="" width="40" />
           <div className="flex items-center justify-center">create car</div>
         </div>
       </div>
       <div>
-        <button onClick={openModal}>Open Modal</button>
+        <button
+          className="flex items-center justify-center"
+          onClick={openModal}
+        >
+          Open Modal
+        </button>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}

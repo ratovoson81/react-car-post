@@ -33,13 +33,13 @@ export const login = (req: Request, res: Response) => {
   User.findOne({ name: req.body.name })
     .then((user) => {
       if (!user) {
-        return res.status(401).json({ error: "Utilisateur non trouvé !" });
+        return res.json({ error: "Utilisateur non trouvé !" });
       }
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
-            return res.status(401).json({ error: "Mot de passe incorrect !" });
+            return res.json({ error: "Mot de passe incorrect !" });
           }
           res.status(200).json({
             name: user.name,

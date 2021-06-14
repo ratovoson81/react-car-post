@@ -1,6 +1,5 @@
 import React from "react";
 import { AuthButton } from "../components/AuthButton";
-import NavBar from "../router/NavBar";
 
 type props = {
   children: React.ReactNode;
@@ -8,11 +7,10 @@ type props = {
 
 const LoginPage: React.FC<props> = ({ children }) => {
   return (
-    <div className="flex flex-col justify-center border">
-      <AuthButton />
-      <NavBar />
+    <div className="flex flex-col justify-center ">
       <br />
       {children}
+      <AuthButton />
     </div>
   );
 };
