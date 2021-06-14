@@ -3,16 +3,17 @@ import { useAppSelector } from "../../hooks";
 import { useCars } from "../../services/Car";
 import moment from "moment";
 import { useComment } from "../../services/Comment";
-import { SyntheticEvent } from "react";
+import { FC, SyntheticEvent, useState } from "react";
 import { useAuth } from "../../context/Auth";
 import { authType } from "../../CostumType";
 import { SpinnerCircular } from "spinners-react";
 
-const ListCar = () => {
+const ListCar: FC = () => {
   useCars();
   const cars = useAppSelector((state) => state.car.cars);
   const { form, handleChange, submit } = useComment();
   let auth = useAuth() as authType;
+  const [loading, setLoading] = useState<Boolean>(false);
 
   return (
     <>
@@ -60,6 +61,7 @@ const ListCar = () => {
             {auth.user && (
               <div className="my-2 mb-4 flex items-center justify-start mx-8">
                 <input
+                  required
                   type="text"
                   className="focus:outline-none bg-gray-100 w-full"
                   placeholder="Votre commentaire"
@@ -67,9 +69,17 @@ const ListCar = () => {
                   onChange={handleChange}
                   value={form.content}
                 />
-                <button onClick={(e: SyntheticEvent) => submit(e, item._id)}>
-                  Envoyer
-                </button>
+                {loading ? (
+                  <SpinnerCircular size="25" color="black" />
+                ) : (
+                  <button
+                    onClick={(e: SyntheticEvent) =>
+                      submit(e, item._id, setLoading)
+                    }
+                  >
+                    Envoyer
+                  </button>
+                )}
               </div>
             )}
           </div>

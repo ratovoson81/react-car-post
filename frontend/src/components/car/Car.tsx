@@ -1,6 +1,7 @@
+import { FC } from "react";
 import ListCar from "./ListCar";
 
-const Car = () => {
+const Car: FC = () => {
   return (
     <>
       <ListCar />

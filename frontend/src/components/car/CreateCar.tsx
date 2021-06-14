@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import { useState } from "react";
+import { FC, useState } from "react";
 import "../../css/style.css";
 import { useAddCar } from "../../services/AddCar";
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -11,7 +11,7 @@ import { TOKEN } from "../../constants/config";
 
 Modal.setAppElement("#root");
 
-const CreateCar = () => {
+const CreateCar: FC = () => {
   const { form, handleChange, handleChangeFile, submit } = useAddCar();
   const user = useAppSelector((state) => state.user.user);
 

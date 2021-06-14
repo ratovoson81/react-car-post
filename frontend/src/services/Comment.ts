@@ -26,7 +26,12 @@ export const useComment = () => {
     });
   };
 
-  const submit = async (event: SyntheticEvent, id: string) => {
+  const submit = async (
+    event: SyntheticEvent,
+    id: string,
+    setLoading: Function
+  ) => {
+    setLoading(true);
     event.preventDefault();
     const value = await comment(form, id);
     dispatch(commentCar(value));
@@ -34,6 +39,7 @@ export const useComment = () => {
       content: "",
       user: userId,
     });
+    setLoading(false);
   };
 
   return {
