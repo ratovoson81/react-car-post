@@ -2,9 +2,11 @@ import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { register } from "../api";
 import { UserType } from "../api/types";
+import { useToasts } from "react-toast-notifications";
 
 export const useRegister = () => {
   let history = useHistory();
+  const { addToast } = useToasts();
 
   const [form, setForm] = useState<UserType>({
     name: "",
@@ -21,8 +23,20 @@ export const useRegister = () => {
 
   const submit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    await register(form);
-    history.push("/");
+    const result = await register(form);
+    if (result.error) {
+      addToast(result.error.errors.name.message, {
+        appearance: "warning",
+        autoDismiss: true,
+      });
+    }
+    if (result.name) {
+      addToast("Compte créer", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+      history.push("/");
+    }
   };
 
   return {

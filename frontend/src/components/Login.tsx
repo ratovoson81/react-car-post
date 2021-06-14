@@ -7,12 +7,15 @@ import { useProvideAuth } from "../services/Auth";
 import { useAppDispatch } from "../hooks";
 import { getUser } from "../store/User";
 import { TOKEN } from "../constants/config";
+import { useToasts } from "react-toast-notifications";
 
 interface LocationState {
   from: Location;
 }
 
 export default function Login() {
+  const { addToast } = useToasts();
+
   const dispatch = useAppDispatch();
   let history = useHistory();
   let location = useLocation<LocationState>();
@@ -30,8 +33,16 @@ export default function Login() {
           dispatch(getUser({ userId: result.userId, name: result.name }));
           localStorage.setItem(TOKEN, result.token);
           history.replace(from);
+          addToast("Bienvenue", {
+            appearance: "success",
+            autoDismiss: true,
+          });
         });
-      } else console.log(result.error);
+      } else
+        addToast(result.error, {
+          appearance: "warning",
+          autoDismiss: true,
+        });
     });
   };
 
