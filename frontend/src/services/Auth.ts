@@ -53,6 +53,7 @@ export function useProvideAuth() {
 
   const connect = async () => {
     const value = await login(form);
+    dispatch(getUser({ userId: value.userId, name: value.name }));
     localStorage.setItem(TOKEN, value.token);
   };
 

@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { TOKEN } from "../constants/config";
 import { useAuth } from "../context/Auth";
 import { authType } from "../CostumType";
 
@@ -11,7 +12,10 @@ export function AuthButton() {
       Welcome! <span>🔥</span>
       <button
         onClick={() => {
-          auth.signout(() => history.push("/"));
+          auth.signout(() => {
+            localStorage.removeItem(TOKEN);
+            history.push("/");
+          });
         }}
       >
         Sign out

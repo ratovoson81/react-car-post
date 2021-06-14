@@ -8,9 +8,11 @@ export const useComment = () => {
   const user = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
 
+  const userId = user?.userId ? user.userId : null;
+
   const [form, setForm] = useState<CommentType>({
     content: "",
-    user: user.userId,
+    user: userId,
   });
 
   const handleChange = (
@@ -20,7 +22,7 @@ export const useComment = () => {
     setForm({
       ...form,
       [name]: value,
-      user: user.userId,
+      user: userId,
     });
   };
 
@@ -28,7 +30,6 @@ export const useComment = () => {
     event.preventDefault();
     const value = await comment(form, id);
     dispatch(commentCar(value));
-    console.log(value);
   };
 
   return {

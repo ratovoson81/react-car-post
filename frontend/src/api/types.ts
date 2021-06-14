@@ -7,7 +7,7 @@ export type CarType = {
   title: string;
   description: string;
   file: File | null;
-  user: string;
+  user: string | null;
 };
 
 export type ItemCarType = CarType & {
@@ -33,5 +33,5 @@ export type comType = {
 
 export type CommentType = {
   content: string;
-  user: string;
+  user: string | null;
 };

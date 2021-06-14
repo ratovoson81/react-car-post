@@ -9,6 +9,7 @@ const ListCar = () => {
   useCars();
   const cars = useAppSelector((state) => state.car.cars);
   const { form, handleChange, submit } = useComment();
+  const user = useAppSelector((state) => state.user.user);
 
   return (
     <>
@@ -29,34 +30,40 @@ const ListCar = () => {
               <p>{moment(new Date(item.date), "YYYYMMDD").fromNow()}</p>
             </div>
             <div className="my-2 flex flex-col mx-8 text-sm text-gray-500">
-              {item.comments.map((com) => (
-                <span key={com._id} className="flex">
-                  <p className="text-black font-semibold">{com.user.name}</p>
-                  <span className="flex flex-col">
-                    <p className="text-gray-500 ml-2">{com.content}</p>
-                    <span className="text-gray-500 ml-2">
+              {user ? (
+                item.comments.map((com) => (
+                  <span key={com._id} className="flex mt-1">
+                    <p className="text-black font-semibold">{com.user.name}</p>
+                    <span className="flex flex-col">
+                      <p className="text-gray-500 ml-2">{com.content}</p>
+                      {/*<span className="text-gray-500 ml-2">
                       {moment(new Date(com.date), "YYYYMMDD").fromNow()}
+                    </span>*/}
                     </span>
                   </span>
-                </span>
-              ))}
+                ))
+              ) : (
+                <p>Connecter vous pour commenter !</p>
+              )}
             </div>
-            <div className="my-2 flex items-center justify-start mx-8">
-              <input
-                type="text"
-                className="focus:outline-none bg-gray-100 w-full"
-                placeholder="Votre commentaire"
-                name="content"
-                onChange={handleChange}
-                value={form.content}
-              />
-              <button
-                className=""
-                onClick={(e: SyntheticEvent) => submit(e, item._id)}
-              >
-                Envoyer
-              </button>
-            </div>
+            {user && (
+              <div className="my-2 flex items-center justify-start mx-8">
+                <input
+                  type="text"
+                  className="focus:outline-none bg-gray-100 w-full"
+                  placeholder="Votre commentaire"
+                  name="content"
+                  onChange={handleChange}
+                  value={form.content}
+                />
+                <button
+                  className=""
+                  onClick={(e: SyntheticEvent) => submit(e, item._id)}
+                >
+                  Envoyer
+                </button>
+              </div>
+            )}
           </div>
         </div>
       ))}

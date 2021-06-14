@@ -7,12 +7,12 @@ import { addCar } from "../store/Car";
 export const useAddCar = () => {
   const user = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
-
+  const userId = user?.userId ? user.userId : null;
   const [form, setForm] = useState<CarType>({
     title: "",
     description: "",
     file: null,
-    user: user.userId,
+    user: userId,
   });
 
   const handleChange = (

@@ -1,8 +1,11 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { register } from "../api";
 import { UserType } from "../api/types";
 
 export const useRegister = () => {
+  let history = useHistory();
+
   const [form, setForm] = useState<UserType>({
     name: "",
     password: "",
@@ -18,8 +21,8 @@ export const useRegister = () => {
 
   const submit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    const value = await register(form);
-    console.log(value);
+    await register(form);
+    history.push("/");
   };
 
   return {
