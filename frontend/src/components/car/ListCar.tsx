@@ -6,6 +6,7 @@ import { useComment } from "../../services/Comment";
 import { SyntheticEvent } from "react";
 import { useAuth } from "../../context/Auth";
 import { authType } from "../../CostumType";
+import { SpinnerCircular } from "spinners-react";
 
 const ListCar = () => {
   useCars();
@@ -15,6 +16,11 @@ const ListCar = () => {
 
   return (
     <>
+      {cars.length === 0 && (
+        <div className="flex justify-center items-center mt-32">
+          <SpinnerCircular size="75" color="black" />
+        </div>
+      )}
       {cars.map((item: ItemCarType) => (
         <div key={item._id} className="flex justify-center ">
           <div className="flex flex-col justify-center w-2/3 mt-8 border border-gray-100 bg-gray-100 rounded-lg">
@@ -24,7 +30,7 @@ const ListCar = () => {
             <div className="flex justify-center">
               <img src={item.imageUrl} alt="" />
             </div>
-            <div className="my-2 flex items-center justify-start mx-8">
+            <div className="mt-2 mb-1 flex items-center justify-start mx-8">
               <p className="text-black font-semibold">{item.user.name}</p>{" "}
               <p className="text-gray-500 ml-2">{item.description}</p>
             </div>
@@ -34,7 +40,7 @@ const ListCar = () => {
             <div className="my-2 flex flex-col mx-8 text-sm text-gray-500">
               {auth.user ? (
                 item.comments.map((com) => (
-                  <span key={com._id} className="flex mt-1">
+                  <span key={com._id} className="flex my-1">
                     <p className="text-black font-semibold">{com.user.name}</p>
                     <span className="flex flex-col">
                       <p className="text-gray-500 ml-2">{com.content}</p>
@@ -49,7 +55,7 @@ const ListCar = () => {
               )}
             </div>
             {auth.user && (
-              <div className="my-2 flex items-center justify-start mx-8">
+              <div className="my-2 mb-4 flex items-center justify-start mx-8">
                 <input
                   type="text"
                   className="focus:outline-none bg-gray-100 w-full"
@@ -58,10 +64,7 @@ const ListCar = () => {
                   onChange={handleChange}
                   value={form.content}
                 />
-                <button
-                  className=""
-                  onClick={(e: SyntheticEvent) => submit(e, item._id)}
-                >
+                <button onClick={(e: SyntheticEvent) => submit(e, item._id)}>
                   Envoyer
                 </button>
               </div>

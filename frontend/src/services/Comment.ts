@@ -30,6 +30,10 @@ export const useComment = () => {
     event.preventDefault();
     const value = await comment(form, id);
     dispatch(commentCar(value));
+    setForm({
+      content: "",
+      user: userId,
+    });
   };
 
   return {
