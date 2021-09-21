@@ -5,12 +5,20 @@ import mongoose from "mongoose";
 import http from "http";
 import { routerUser } from "./routes/User";
 import path from "path";
+import { Server } from "socket.io";
 var cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 const server = http.createServer(app);
+
+export const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 mongoose
   .connect(
@@ -39,4 +47,11 @@ app.use("/user", routerUser);
 
 server.listen(4000, () => {
   console.log("serveur start on port 4000");
+});
+
+io.on("connection", (socket) => {
+  socket.on("add", (text) => {
+    console.log("add");
+    io.emit("ok", text);
+  });
 });

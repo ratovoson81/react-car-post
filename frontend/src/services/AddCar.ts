@@ -1,9 +1,11 @@
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import { createCar } from "../api";
 import { CarType } from "../api/types";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addCar } from "../store/Car";
 import { useToasts } from "react-toast-notifications";
+import socketClient from "socket.io-client";
+import { URL_API } from "../constants/config";
 
 export const useAddCar = () => {
   const { addToast } = useToasts();
@@ -17,6 +19,14 @@ export const useAddCar = () => {
     file: null,
     user: userId,
   });
+
+  const socket = socketClient(URL_API);
+
+  useEffect(() => {
+    socket.on("ok", (text) => {
+      console.log("reussi", text);
+    });
+  }, []);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -37,8 +47,11 @@ export const useAddCar = () => {
 
   const submit = async (event: SyntheticEvent, closeModal: Function) => {
     event.preventDefault();
-    const value = await createCar(form);
-    dispatch(addCar(value));
+
+    //const value = await createCar(form);
+    //dispatch(addCar(value));
+
+    socket.emit("add", { text: "add" });
     addToast("voiture publié", {
       appearance: "success",
       autoDismiss: true,
