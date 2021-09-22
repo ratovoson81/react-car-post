@@ -50,8 +50,7 @@ server.listen(4000, () => {
 });
 
 io.on("connection", (socket) => {
-  socket.on("add", (text) => {
-    console.log("add");
-    io.emit("ok", text);
+  socket.on("add", (data) => {
+    io.emit("ok", data);
   });
 });

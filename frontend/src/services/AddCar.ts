@@ -23,8 +23,8 @@ export const useAddCar = () => {
   const socket = socketClient(URL_API);
 
   useEffect(() => {
-    socket.on("ok", (text) => {
-      console.log("reussi", text);
+    socket.on("ok", (data) => {
+      dispatch(addCar(data.data));
     });
   }, []);
 
@@ -48,10 +48,10 @@ export const useAddCar = () => {
   const submit = async (event: SyntheticEvent, closeModal: Function) => {
     event.preventDefault();
 
-    //const value = await createCar(form);
+    const value = await createCar(form);
     //dispatch(addCar(value));
 
-    socket.emit("add", { text: "add" });
+    socket.emit("add", { data: value });
     addToast("voiture publié", {
       appearance: "success",
       autoDismiss: true,
