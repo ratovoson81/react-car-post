@@ -26,6 +26,7 @@ export const useAddCar = () => {
     socket.on("ok", (data) => {
       dispatch(addCar(data.data));
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (

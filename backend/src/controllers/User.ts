@@ -45,7 +45,7 @@ export const login = (req: Request, res: Response) => {
             name: user.name,
             userId: user._id,
             token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
-              expiresIn: "24h",
+              expiresIn: "7d",
             }),
           });
         })

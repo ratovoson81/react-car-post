@@ -11,8 +11,6 @@ import LoadingBar from "react-top-loading-bar";
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import socketClient from "socket.io-client";
-import { URL_API } from "../constants/config";
 
 export default function App() {
   const [loading, setLoading] = useState<Boolean>(true);

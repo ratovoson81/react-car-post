@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { io } from "..";
 import { Car } from "../models/Car";
 import { Comment } from "../models/Comment";
 
